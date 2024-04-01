@@ -16,8 +16,6 @@ public class Left_View_Of_Binary_Tree {
 	        left = right = null;
 	    }
 	}
-	 
-	/* Class to print the left view */
 	class BinaryTree {
 	    Node root;
 	    static int max_level = 0;
@@ -46,6 +44,4 @@ public class Left_View_Of_Binary_Tree {
 	        leftViewUtil(root, 1);
 	    }
 	}
-	 
-
 }
