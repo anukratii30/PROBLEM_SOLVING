@@ -1,7 +1,4 @@
 package TREE_4_AND_5;
-
-import Tree_BST.Inserting_into_bst_701.TreeNode;
-
 public class converted_sorted_array_to_BST {
 	public class TreeNode {
 		int val;

@@ -1,11 +1,10 @@
 package TREE_4_AND_5;
 
+import TREE_4_AND_5.RangeSumofBST.TreeNode;
+
 public class Max_sum_BST {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	
 	public int maxSumBST(TreeNode root) {
 	    traverse(root);
 	    return ans;
