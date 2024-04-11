@@ -31,8 +31,10 @@ public class construct_tree_from_preorder_and_inorder {
 		TreeNode node = new TreeNode(pre[plo]);
 		int idx = search(in, ilo, ihi, pre[plo]);
 		int nel = idx - ilo;
+
 		node.left = createTree(pre, in, plo + 1, plo + nel, ilo, idx - 1);
-		node.left = createTree(pre, in, plo + nel + 1, phi, idx + 1, ihi);
+		node.right = createTree(pre, in, plo + nel + 1, phi, idx + 1, ihi); // corrected assignment
+
 		return node;
 	}
 
