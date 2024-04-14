@@ -1,43 +1,73 @@
 package TRIES_1;
 
 public class Implement_Trie_Prefix_Tree {
-	class TrieNode {
-		public TrieNode[] children = new TrieNode[26];
-		public boolean isWord = false;
-	}
-
+	
 	class Trie {
+		Node root;
+
+		public Trie() {
+			root = new Node();
+		}
+
 		public void insert(String word) {
-			TrieNode node = root;
-			for (final char c : word.toCharArray()) {
-				final int i = c - 'a';
-				if (node.children[i] == null)
-					node.children[i] = new TrieNode();
-				node = node.children[i];
+			Node curr = root;
+			int n = word.length();
+			for (int i = 0; i < n; i++) {
+				int index = word.charAt(i) - 'a';
+				if (curr.children[index] == null) {
+					curr.children[index] = new Node();
+				}
+				if (i == n - 1) {
+					curr.children[index].eow = true;
+				}
+				curr = curr.children[index];
 			}
-			node.isWord = true;
+
 		}
 
 		public boolean search(String word) {
-			TrieNode node = find(word);
-			return node != null && node.isWord;
+			Node curr = root;
+			int n = word.length();
+			for (int i = 0; i < n; i++) {
+				int index = word.charAt(i) - 'a';
+				if (curr.children[index] == null) {
+					return false;
+				}
+
+				if (i == n - 1) {
+					return curr.children[index].eow;
+				}
+				curr = curr.children[index];
+			}
+			return false;
 		}
 
 		public boolean startsWith(String prefix) {
-			return find(prefix) != null;
-		}
+			Node curr = root;
+			int n = prefix.length();
+			for (int i = 0; i < n; i++) {
+				int index = prefix.charAt(i) - 'a';
+				if (curr.children[index] == null) {
+					return false;
+				}
 
-		private TrieNode root = new TrieNode();
-
-		private TrieNode find(String prefix) {
-			TrieNode node = root;
-			for (final char c : prefix.toCharArray()) {
-				final int i = c - 'a';
-				if (node.children[i] == null)
-					return null;
-				node = node.children[i];
+				curr = curr.children[index];
 			}
-			return node;
+			return true;
 		}
+	}
+
+	class Node {
+		Node children[];
+		boolean eow;
+
+		Node() {
+			children = new Node[26];
+			for (Node e : children) {
+				e = null;
+			}
+			eow = false;
+		}
+
 	}
 }
